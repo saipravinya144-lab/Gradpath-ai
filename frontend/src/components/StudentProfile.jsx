@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import "./StudentProfile.css";
 
@@ -74,7 +75,7 @@ function StudentProfile({
       try {
 
         const response = await fetch(
-          "http://localhost:5000/profile",
+          `${import.meta.env.VITE_API_URL}/profile`,
           {
             headers: {
               Authorization: `Bearer ${token}`
@@ -174,8 +175,8 @@ function StudentProfile({
       // EDIT = PUT
       const response = await fetch(
         isEditMode
-          ? "http://localhost:5000/student-profile"
-          : "http://localhost:5000/student-profile",
+          ? `${import.meta.env.VITE_API_URL}/student-profile`
+          : `${import.meta.env.VITE_API_URL}/student-profile`,
         {
           method: isEditMode ? "PUT" : "POST",
 

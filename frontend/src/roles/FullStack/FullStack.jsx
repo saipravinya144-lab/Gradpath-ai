@@ -104,7 +104,7 @@ function FullStack({ goBack }) {
 
       try {
         const response = await fetch(
-          "http://localhost:5000/learning-progress",
+          "https://gradpath-ai-backend.onrender.com/learning-progress",
           {
             headers: {
               Authorization: `Bearer ${token}`,

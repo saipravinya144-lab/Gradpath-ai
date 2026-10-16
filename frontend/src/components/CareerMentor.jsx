@@ -60,7 +60,7 @@ function CareerMentor({ student, selectedRole, onBack }) {
                 throw new Error("Your session has expired. Please log in again.");
             }
 
-            const response = await fetch("http://localhost:5000/career-mentor/chat", {
+            const response = await fetch("https://gradpath-ai-backend.onrender.com/career-mentor/chat", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

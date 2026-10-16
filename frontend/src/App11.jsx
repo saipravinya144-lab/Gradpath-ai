@@ -144,7 +144,7 @@ function App() {
             try {
 
                 const response = await fetch(
-                    "http://localhost:5000/student-profile",
+                    "https://gradpath-ai-backend.onrender.com/student-profile",
                     {
                         method: "GET",
 
@@ -223,7 +223,7 @@ function App() {
             try {
 
                 const response = await fetch(
-                    "http://localhost:5000/learning-progress",
+                    "https://gradpath-ai-backend.onrender.com/learning-progress",
                     {
                         method: "GET",
 
@@ -292,7 +292,7 @@ function App() {
             try {
 
                 const response = await fetch(
-                    "http://localhost:5000/quiz-results",
+                    "https://gradpath-ai-backend.onrender.com/quiz-results",
                     {
                         method: "GET",
 
@@ -1207,7 +1207,7 @@ function App() {
         setSelectedRole={async (role) => {
             try {
                 const response = await fetch(
-                    "http://localhost:5000/student-profile",
+                    "https://gradpath-ai-backend.onrender.com/student-profile",
                     {
                         method: "PUT",
                         headers: {

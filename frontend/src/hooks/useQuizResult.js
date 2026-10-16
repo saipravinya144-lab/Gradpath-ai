@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 
-const API_URL = "http://localhost:5000/quiz-results";
+const API_URL = "https://gradpath-ai-backend.onrender.com/quiz-results";
 
 function calculateAnswersScore(topic, answers) {
   if (!topic?.lesson?.quiz || !answers) return null;

@@ -1008,7 +1008,7 @@ ON Student(Name);`}
 
     try {
       const response = await fetch(
-        "http://localhost:5000/learning-progress",
+        "https://gradpath-ai-backend.onrender.com/learning-progress",
         {
           headers: {
             Authorization: `Bearer ${token}`
@@ -1172,7 +1172,7 @@ ON Student(Name);`}
 
       try {
         const response = await fetch(
-          "http://localhost:5000/learning-progress/complete",
+          "https://gradpath-ai-backend.onrender.com/learning-progress/complete",
           {
             method: "POST",
 

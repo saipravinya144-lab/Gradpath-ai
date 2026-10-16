@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 
-const API_BASE = "http://localhost:5000";
+const API_BASE = "https://gradpath-ai-backend.onrender.com";
 
 function useLearningProgress(namespace, subtopics = []) {
     const [completed, setCompleted] = useState([]);

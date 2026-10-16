@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:5000";
+const API_BASE = "https://gradpath-ai-backend.onrender.com";
 const inFlightSaves = new Map();
 
 /** Persist one completed quiz attempt for the authenticated student. */

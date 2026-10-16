@@ -453,7 +453,7 @@ function App() {
             try {
 
                 const response = await fetch(
-                    "http://localhost:5000/learning-progress",
+                    `${import.meta.env.VITE_API_URL}/learning-progress`,
                     {
                         method: "GET",
 
@@ -522,7 +522,7 @@ function App() {
             try {
 
                 const response = await fetch(
-                    "http://localhost:5000/quiz-results",
+                    `${import.meta.env.VITE_API_URL}/learning-progress`,
                     {
                         method: "GET",
 

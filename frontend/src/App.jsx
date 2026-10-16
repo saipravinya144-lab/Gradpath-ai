@@ -374,7 +374,7 @@ function App() {
             try {
 
                 const response = await fetch(
-                    "http://localhost:5000/student-profile",
+                    `${import.meta.env.VITE_API_URL}/student-profile`,
                     {
                         method: "GET",
 

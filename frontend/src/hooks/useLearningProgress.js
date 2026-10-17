@@ -14,6 +14,10 @@ function useLearningProgress(namespace, subtopics = []) {
         [subtopics]
     );
     const topicIdsKey = topicIds.join("\u001f");
+    const topicIdsWithTypes = useMemo(
+        () => subtopics.map((topic) => ({ id: topic.id, stringId: String(topic.id) })),
+        [subtopics]
+    );
 
     useEffect(() => {
         let cancelled = false;
@@ -39,9 +43,13 @@ function useLearningProgress(namespace, subtopics = []) {
                 }
 
                 const saved = new Set(data.completedTopics || []);
-                const savedForThisModule = topicIds.filter((id) =>
-                    saved.has(`${namespace}-${id}`)
-                );
+                // Keep IDs in the same type as the lesson data. Many lesson
+                // components compare completed IDs directly with topic.id,
+                // which is commonly a number (for example, 1). Returning only
+                // strings made saved lessons look incomplete in the UI.
+                const savedForThisModule = topicIdsWithTypes
+                    .filter((topic) => saved.has(`${namespace}-${topic.stringId}`))
+                    .map((topic) => topic.id);
                 if (!cancelled) setCompleted(savedForThisModule);
             } catch (error) {
                 if (error.name !== "AbortError") {
@@ -57,11 +65,14 @@ function useLearningProgress(namespace, subtopics = []) {
             cancelled = true;
             controller.abort();
         };
-    }, [namespace, topicIdsKey]);
+    }, [namespace, topicIdsKey, topicIdsWithTypes]);
 
     const markComplete = useCallback(async (id) => {
         const localId = String(id);
-        if (completed.includes(localId) || savingIds.includes(localId)) return false;
+        if (
+            completed.some((completedId) => String(completedId) === localId) ||
+            savingIds.includes(localId)
+        ) return false;
 
         const token = localStorage.getItem("token");
         if (!token) {
@@ -84,7 +95,11 @@ function useLearningProgress(namespace, subtopics = []) {
                 throw new Error(data.message || "Failed to save learning progress");
             }
 
-            setCompleted((previous) => previous.includes(localId) ? previous : [...previous, localId]);
+            setCompleted((previous) =>
+                previous.some((completedId) => String(completedId) === localId)
+                    ? previous
+                    : [...previous, id]
+            );
             return true;
         } catch (error) {
             console.error("Error saving learning progress:", error);

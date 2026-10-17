@@ -522,7 +522,7 @@ function App() {
             try {
 
                 const response = await fetch(
-                    `${import.meta.env.VITE_API_URL}/learning-progress`,
+                    `${import.meta.env.VITE_API_URL}/quiz-results`,
                     {
                         method: "GET",
 
